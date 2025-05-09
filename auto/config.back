@@ -1,0 +1,18 @@
+#!/bin/bash
+
+lb config noauto \
+--mirror-bootstrap http://deb.debian.org/debian/ \
+--mirror-binary http://deb.debian.org/debian/ \
+--security false \
+--updates false \
+--distribution trixie \ 
+--debian-installer live \ 
+--debian-installer-distribution git \ 
+--cache-packages false \
+--archive-areas main non-free-firmware \ 
+--iso-volume d-live testing gn amd64  \
+--architecture amd64  \
+--source true \
+
+"${@}"
+

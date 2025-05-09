@@ -1,0 +1,37 @@
+#!/bin/bash
+
+lb config noauto \
+	--apt-recommends false \
+	--architectures amd64 \
+	--archive-areas 'main contrib non-free non-free-firmware' \
+	--backports true \
+	--security true\
+	--updates true \
+	--source true \
+	--binary-images iso-hybrid \
+	--checksums md5 \
+	--clean \
+	--debconf-frontend noninteractive \
+	--debian-installer live \
+	--debian-installer-distribution trixie \
+	--debian-installer-gui true \
+	--debootstrap-options "--variant=minbase --include=apt-transport-https,ca-certificates,openssl" \
+	--distribution trixie \
+        --chroot-squashfs-compression-level 19 \
+        --chroot-squashfs-compression-type zstd \
+	--firmware-binary true \
+	--firmware-chroot true \
+	--initramfs live-boot \
+        --image-name 'EnigmaOS-Trixie-13.0.0' \
+        --iso-application 'EnigmaOS-Trixie' \
+        --iso-publisher 'EnigmaOS-Trixie GNU/Linux' \
+        --iso-volume 'EnigmaOS-Trixie' \
+--bootappend-live "boot=live swap config username=enigma live-config.hostname=EnigmaOS live-config.hostname=EnigmaOS live-config.user-default-groups=audio,cdrom,floppy,video,dip,plugdev,scanner,bluetooth,netdev,sudo,dialout,lp,lpadmin components persistence sudo locales=en_US.UTF-8 \
+keyboard-layouts=pc105 timezone=Asia/Jakarta splash threadirqs quiet" \
+	--memtest memtest86+ \
+	--win32-loader true
+"${@}"
+
+
+	#--linux-packages "linux-image-amd64 linux-headers-amd64" \
+	#live-config.hostname=EnigmaOS live-config.user-default-groups=audio,cdrom,floppy,video,dip,plugdev,scanner,bluetooth,netdev,sudo,dialout,lp,lpadmin"
